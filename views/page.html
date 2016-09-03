@@ -1,0 +1,60 @@
+<div ng-controller="BaseCtrl">
+		<div class="sidebar-wrapper" ng-class="{'sidebar-expanded':expand}">
+			<div class="top-bar">
+				<button class="btn btn-default toggle-button on-md on-sm" ng-click="toggleSearch()">
+					<span ng-class="{'wb-menu':!expand,'wb-close':expand}" class="icon "></span>
+				</button>
+				<button class="btn btn-default toggle-button on-md on-md" ng-click="toggleSearch()">
+					<span ng-class="{'wb-chevron-right':!expand,'wb-chevron-left':expand}" class="icon"></span>
+				</button>
+				<span class="on-sm brand-top-menu"></span>
+				<div class="pull-right top-nav-element" >
+					<i notification-button class="icon wb-bell"></i>
+				</div>
+				<div class="pull-right top-nav-element" ui-sref="page.messages.new">
+					<i class="icon wb-envelope-open"></i><span new-message-display id="topbar-message-indicator" class="label label-xs label-warning"></span>
+				</div>
+
+			</div>
+			<div class="sidebar">
+				<div class="on-lg sidebar-brand">Washery</div>
+				<div class="on-md sidebar-brand">W</div>
+				 <ul class="sidebar-menu">
+
+					<div class="nav-profil">
+						<img onError="this.src='images/image-not-found.png';" src="{{getProfileImage()}}"></img>
+						<div>{{getName()}}</div>
+						<a ui-sref="page.profil"><button>Profil</button></a>
+					</div>
+					<li ui-sref-active="active2" ui-sref="page.dashboard">
+						<i class="icon wb-dashboard"></i> <span class="text">Dashboard</span>
+					</li>
+					<li ui-sref-active="active2" ui-sref="page.bookings">
+						<i class="icon wb-shopping-cart"></i> <span class="text">Bookings</span>
+					</li>
+					<li ng-if="isWasher()" ui-sref-active="active2" ui-sref="page.washer">
+						<i class="icon wb-cloud"></i> <span class="text">Washer</span>
+					</li>
+					<li ui-sref-active="active2" ui-sref="page.messages.new">
+						<i class="icon wb-envelope-open"></i><span class="text">Messages</span>
+					</li>
+					<li ui-sref-active="active2" ui-sref="page.locations.all">
+						<i class="icon wb-map"></i> <span class="text">Locations</span>
+					</li>
+					<li ui-sref-active="active2" ui-sref="page.vehicles">
+						<i class="icon wb-mobile"></i> <span class="text">Vehicles</span>
+					</li>
+					<li ui-sref-active="active2" ui-sref="page.payments">
+						<i class="icon wb-payment"></i> <span class="text">Payments</span>
+					</li>
+					<li ui-sref-active="active2" ui-sref="page.support">
+						<i class="icon wb-help-circle"></i> <span class="text">Support </span>
+					</li>
+					<li class="on-expanded" ui-sref-active="active2" ng-click="logout()">
+						<span class="text">Logout </span>
+					</li>
+				</ul>
+			</div>
+			<div ui-view class="sidebar-content"></div>
+		</div>
+</div>

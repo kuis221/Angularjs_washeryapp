@@ -1,0 +1,27 @@
+<div class="content-body">
+<div class="visible-xs">
+	<ul class="vertical-nav-list" >
+		<li ng-click="newMessage()"><span class="icon wb-pencil"></span></li>
+		<li ui-sref-active="active1" ui-sref="page.messages.new"><p class="icon wb-envelope"><span new-message-display></span></p></li>
+		<li ui-sref-active="active1" ui-sref="page.messages.archive"><p class="icon wb-envelope-open"> </p></li>
+		<li ui-sref-active="active1" ui-sref="page.messages.send"><p class="icon wb-reply"> </p></li>
+		<li ui-sref-active="active1" ui-sref="page.messages.deleted"><p class="icon wb-trash"> </p></li>		
+	</ul>
+</div>
+<div class="row">
+	
+	<div class="hidden-xs col-sm-3 col-md-3 col-lg-3 nospacing-right">
+		<div class="horizontal-nav-list">
+			<div ng-click="newMessage()"><span class="icon wb-pencil"></span> New Message</div>
+			<div ui-sref-active="active1" ui-sref="page.messages.new"><span class="icon wb-envelope"><span new-message-display></span></span> Inbox</div>
+			<div ui-sref-active="active1" ui-sref="page.messages.archive"><span class="icon wb-envelope-open"> </span> Archive</div>
+			<div ui-sref-active="active1" ui-sref="page.messages.send"><span class="icon wb-reply"> </span> Outbox</div>
+			<div ui-sref-active="active1" ui-sref="page.messages.deleted"><span class="icon wb-trash"> </span> Trash</div>				
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 message-container" >
+		<h1 class="page-title hidden-xs">Messages</h1>
+		<ui-view class="full-height" />
+	</div>
+	
+</div>

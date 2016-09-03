@@ -1,0 +1,31 @@
+<div class="content-body">
+	<div class="container-fluid" >
+		<div class="input-group" ng-show="filteredPayments">
+			<input type="text" class="form-control" ng-model="searchquery" />
+			<span class="input-group-btn"><button  class="btn btn-default input-group-btn-fix"><span class="icon wb-search"></span></button></span>
+		</div>
+		<div class="pull-right" ladda="loading" ng-show="filteredPayments">
+		<div class="pagination-sm pull-right">
+			<uib-pagination previous-text="<" next-text=">" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage" max-size="5" ng-change="pageChanged()"></uib-pagination>
+		</div>
+		</div>
+		<table class="display-list">
+			<tbody ng-repeat="payment in filteredPayments">
+				<tr>
+					<td rowspan="3"><img onError="this.src='images/image-not-found.png';"  src="{{payment.reciever.img}}" /></td>
+					<td valign="bottom" class="full-width">{{payment.reciever.name}}</td>
+					<td rowspan="3">
+						<span>{{payment.amount}}</span>
+					</td>
+				</tr>
+				<tr>
+					<td valign="middle">{{payment.date}}</td>
+				</tr>
+				<tr>
+					<td valign="top">{{payment.status}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="btn btn-default pull-right" ng-click="addVehicle()"><span class="icon wb-plus"></span> Add </button>
+	</div>
+</div>

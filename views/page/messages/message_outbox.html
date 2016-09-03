@@ -1,0 +1,38 @@
+<div style="padding:5px;">
+	<button class="btn btn-default" ng-click="reloadMessages()"><span class="icon wb-refresh" ></span></button>
+	<div class="message-searchbar pull-right">
+		<div class="input-group">
+				<input type="text" class="form-control" placeholder="Filter" ng-model="searchText">
+				<span class="input-group-btn">
+					<button class="btn btn-default" style="height:34px;" type="button"><span class="icon wb-search"></span></button>
+			</span>
+		</div>
+	</div>
+</div>
+<div ng-repeat="msg in outboxMessages  | filter:searchText" class="message-preview">
+
+
+	<table class="message-table">
+		<tr>
+			<td>
+				<span class="checkbox message-checkbox">
+						<input type="checkbox" id="{{msg.id}}" ng-model="msg.selected"/>
+						<label for="{{msg.id}}"> </label>
+				</span>
+			</td>
+			<td>
+				<span class="message-dispay" ng-click="msg.display = !msg.display">
+					{{msg.subject}}<br>
+					<span><a ui-sref="page.viewprofil({uname: msg.from})">{{msg.from}}</a></span>
+					<span>{{msg.created_at}}</span>
+				</span>
+			</td>
+		</tr>
+	</table>
+	<div uib-collapse="!msg.display">
+		{{msg.body}}
+	</div>
+	
+	
+</div>
+<div class="container message-preview" ng-if="outboxMessages.length<1">No Messages</div>

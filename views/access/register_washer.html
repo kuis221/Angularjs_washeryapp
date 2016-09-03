@@ -1,0 +1,131 @@
+<form class="form-signin page-login" name="registerForm" ng-submit="createWasher()" novalidate>
+    
+	<div>
+		<!-- name -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-user-add"></span>
+			</span>
+			<input type="text" name="fname" class="form-control" placeholder="Name" ng-minlength="3" ng-model="user.name" required>
+		</div> 
+		<br>
+		<!-- lastname -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-user-add"></span>
+			</span>
+			<input type="text" class="form-control" name="lname" placeholder="Lastname" ng-minlength="3" ng-model="user.surname" required>
+		</div> 
+		<br>
+		<!-- telefon -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-mobile"></span>
+			</span>
+			<input type="tel" class="form-control" placeholder="Phone" ng-minlength="10" ng-maxlength="10" ng-model="user.telephone" required>
+		</div> 
+		<br>
+		<!-- email -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-envelope"></span>
+			</span>
+			<div class="in-input">
+				<div class="glyphicon glyphicon-ok success" ng-if="!registerForm.$error.emailExists && !registerForm.$pending.emailExists && !registerForm.email.$error.minlength && !registerForm.email.$error.required && !registerForm.email.$error.emailValid"></div>
+				<img src="images/loading.gif" ng-if="registerForm.$pending.emailExists" />
+				<div class="glyphicon glyphicon-remove danger" ng-if="registerForm.$error.emailExists"></div>
+			</div>
+			<input type="text" class="form-control" name="email" ng-minlength="3" placeholder="E-Mail" ng-model="user.email" email-available required>
+		</div> 
+		<br>
+		<!-- username -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-user-circle"></span>
+			</span>
+			<div class="in-input">
+				<div class="glyphicon glyphicon-ok success" ng-if="!registerForm.$error.unameExists && !registerForm.$pending.unameExists && !registerForm.username.$error.minlength && !registerForm.username.$error.required"></div>
+				<img src="images/loading.gif" ng-if="registerForm.$pending.unameExists" />
+				<div class="glyphicon glyphicon-remove danger" ng-if="registerForm.$error.unameExists"></div>
+			</div>
+			<input type="text" class="form-control" name="username" ng-minlength="3" placeholder="Username" ng-model="user.username" username-available required>
+			
+		</div> 
+		
+		
+		<br>
+		<!-- password -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-lock"></span>
+			</span>
+			<input type="password" class="form-control" ng-minlength="5" placeholder="Password" ng-model="user.password" required>
+		</div> 
+		<br>
+		<!-- password -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-lock"></span>
+			</span>
+			<input type="password" class="form-control" placeholder="Password" ng-model="user.password2" ng-class="{'ng-invalid':user.password !== user.password2}">
+		</div> 
+		<br>
+		<!-- Province -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-map"></span>
+			</span>
+			<input type="text" class="form-control" name="province" placeholder="Province" ng-minlength="3" ng-model="user.province" required>
+		</div> 
+		<br>
+		<!-- City -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-map"></span>
+			</span>
+			<input type="text" class="form-control" name="city" placeholder="City" ng-minlength="3" ng-model="user.city" required>
+		</div> 
+		<br>
+		<!-- address -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-home"></span>
+			</span>
+			<input type="text" class="form-control" name="address" placeholder="Address" ng-minlength="3" ng-model="user.address" required>
+		</div> 
+		<br>
+		<!-- Birthdate -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-calendar"></span>
+			</span>
+			<input type="date" class="form-control" name="birthdate" placeholder="Birthdate" ng-minlength="3" ng-model="user.birthdate" required>
+		</div> 
+		<br>
+		<!-- sex -->
+		<div class="input-group input-group-icon">
+			<span class="input-group-addon">
+				<span class="icon wb-users"></span>
+			</span>
+			<select class="form-control" ng-model="user.sex">
+				<option value="m">Male</option>
+				<option value="f">Female</option>
+			</select>
+		</div> 
+		<br>
+		
+		
+		<div class="pull-left">
+			<div class="checkbox">
+				<input type="checkbox" id="remember" name="agbs" required/>
+				<label for="remember"><div style="width:300px">I agree to the <a ng-click="displayTOS()">terms and conditions</a></div></label>
+			</div>
+		</div>
+		<br><br>
+		<div class="pull-right" ng-click="dispayPrivacy()"><a>Privacy Policy</a></div>
+		<div vc-recaptcha key="'6Lf1cxITAAAAAExP9rM5Tryrfyq-xGxmQ5PqVzHh'" ng-model="user.gRecaptchaResponse"></div><br><br><br><br>
+		<button class="btn btn-lg btn-primary btn-block" ng-disabled="registerForm.$invalid || user.password !== user.password2" type="submit">Register</button>
+		
+		<br>
+		<p>Already have an account? <a ui-sref="access.login">Login</a></p>
+</form>

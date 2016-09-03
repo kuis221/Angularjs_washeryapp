@@ -1,0 +1,32 @@
+<div class="content-body">
+	<div class="container-fluid" >
+		<div class="input-group" ng-hide="!filteredVehicles || loading">
+			<input type="text" class="form-control" ng-model="searchquery" />
+			<span class="input-group-btn"><button  class="btn btn-default input-group-btn-fix"><span class="icon wb-search"></span></button></span>
+		</div>
+		<div class="pull-right" ladda="loading" ng-hide="!filteredVehicles || loading">
+		<div class="pagination-sm pull-right">
+			<uib-pagination previous-text="<" next-text=">" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage" max-size="5" ng-change="pageChanged()"></uib-pagination>
+		</div>
+		</div>
+		<table class="display-list" >
+			<tbody ng-repeat="vehicle in filteredVehicles">
+				<tr>
+					<td rowspan="3"><img onError="this.src='images/image-not-found.png';"  src="{{vehicle.img}}" /></td>
+					<td valign="bottom" class="full-width"><b>Plate</b>: {{vehicle.plate}}</td>
+					<td rowspan="3">
+						<button class="btn btn-danger pull-right" ng-click="deleteVehicle(vehicle.id)"><span class="icon wb-trash"></span></button>
+					</td>
+				</tr>
+				<tr>
+					<td valign="middle"><b>Color</b>: {{vehicle.color}}</td>
+				</tr>
+				<tr>
+					<td valign="top"><b>Model</b>: {{vehicle.model}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="btn btn-default pull-right" ng-click="addVehicle()"><span class="icon wb-plus"></span> Add </button>
+    <p ng-hide="filteredVehicles || loading">Please add vehicles</p>
+  </div>
+</div>

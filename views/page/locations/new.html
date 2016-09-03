@@ -1,0 +1,21 @@
+
+<p ng-hide="newLocation.isValid"><span class="icon wb-info-circle"></span> Location is not served.</p>
+<div class="input-group">
+	<input type="text" placeholder="Address" g-places-autocomplete on-change="viewNewLocation" lnglat="newLocation" class="form-control" ng-model="currentAddress"></input>
+	<span class="input-group-btn"><button class="btn btn-default input-group-btn-fix" ng-click="setToCurrentLocation()"><span class="icon wb-map"></span></button></span>
+</div>
+
+<form ng-submit="saveNewLocation()" name="newLocationForm" novalidate>
+	<table class="location-new-table">
+		<tr>
+			<td><span class="icon" ng-click="newLocation.default = newLocation.default=='0'?1:0" ng-class="{'wb-star-outline':newLocation.default==0,'wb-star':newLocation.default==1}"></span></td>
+			<td class="input-group">
+				<input class="form-control" placeholder="Name" ng-model="newLocation.name" ng-minlength="2" required></input>
+				<span class="input-group-btn"><button class="btn btn-default input-group-btn-fix" type="submit" ng-disabled="newLocationForm.$invalid || !newLocation.isValid">Save</button></span>
+			</td>
+			<td>
+				<button class="btn btn-danger pull-right" ng-click="cancelNewLocation()">Cancel</button>
+			</td>
+		</tr>
+	</table>
+</form>

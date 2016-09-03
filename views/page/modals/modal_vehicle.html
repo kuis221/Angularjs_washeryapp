@@ -1,0 +1,27 @@
+<div class="modal-content new-message">
+	<button class="btn btn-danger pull-right" ng-click="close()"><span class="icon wb-close"></span></button>
+	<h2>New Vehicle</h2>
+	<form ng-submit="done()" name="form" novalidate class="message-form">
+		<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					<img src="{{newFile.src}}" class="image-preview"/>
+					<input class="hidden-input" file-change="onNewFile" type="file" name="file" id="file" ng-model="newFile"></input>
+					<label class="hidden-label" for="file"><div class="btn btn-default"><span class="icon wb-upload"></span> Select</div></label>
+				</div >
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					<label>Plate: </label><input type="text" required ng-minlength="5" class="form-control message-input vehicle-input" placeholder="Plate" ng-model="car.plate"></input>
+					<label>Color: </label><input type="text" required ng-minlength="3" class="form-control message-input vehicle-input" placeholder="Color" ng-model="car.color"></input>
+					<label>Model: </label><input type="text" required ng-minlength="3" class="form-control message-input vehicle-input" placeholder="Model" ng-model="car.model"></input>
+					<label>Typ: </label>
+					<select required class="form-control" ng-model="car.vehicletype_id">
+						<option ng-repeat="(key,val) in vehiclesTypes" value="{{key}}">{{val}}</option>
+					</select>
+				</div>
+		</div>
+		<br>
+		<div style="height:35px">
+			<button class="btn btn-primary pull-right" ng-click="done()" ng-disabled="form.$invalid || !newFile">Save</button>
+		</div>
+	</form>
+</div>
+

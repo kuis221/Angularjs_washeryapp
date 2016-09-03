@@ -1,0 +1,170 @@
+.multistep-form {
+	width:100%;
+}
+.multistep-form .step {
+	width:100%;
+	transition:all 0.5s;
+	display:inline-block;
+	float:left;
+}
+.multistep-form .ng-hide:not(.ng-hide-animate) {
+	width:0px;
+	overflow:hidden;
+	opacity:0;
+	height:150px;
+	display:inline-block !important;
+}
+
+.multistep-form .ng-hide-remove{
+	width:100%;
+}
+.multistep-form table{
+	width:100%;
+}
+.multistep-form .multi-table .multi-row .multi-col{
+	width:50%;
+	padding:5px;
+}
+.multistep-form .progress-display {
+	padding:0px;
+	padding-bottom:15px;
+	width:100%;
+	height:60px;
+	color:#999;
+}
+.multistep-form .progress-display .header{
+	border-width:0px;
+	font-size:35px;
+	color:#000;
+	font-family: 'Bello Pro';
+	color: #ffbb00; 
+}
+.multistep-form .progress-display p {
+	width:10px;
+	height:10px;
+	display:inline-block;
+	margin-bottom:0px;
+	border-radius:100%;
+	background-color:#EEE;
+	float:right;
+	margin:2px;
+	transition:all 0.5s;
+}
+.multistep-form .progress-display  .active{
+	background-color:#777;
+}
+.multistep-form .progress-display .active {
+	font-weight:bold;
+	color:#000;
+}
+.multistep-form .progress-display .done {
+	cursor:pointer;
+	color:#3CA3E0;
+}
+.multistep-form .progress-display .arrow {
+	opacity:1;
+	border-right: 1px solid; 
+    border-bottom: 1px solid;
+	border-color:#000;
+	margin-top:5px;
+    width: 15px; height: 15px;
+    transform: rotate(-45deg);
+	display:inline-block;
+	margin-right:5px;
+}
+.paymentselect {
+	width:100%;
+}
+.paymentselect .method {
+	overflow:hidden;
+	max-height:50px;
+	width:100%;
+	opacity:.5;
+	transition:all 0.5s;
+	border-top:solid 1px #DDD;
+	border-bottom:solid 1px #DDD;
+	padding:15px;
+	padding-top:0px;
+}
+.paymentselect .method-container {
+	opacity:.1;
+	display:block;
+	width:100%;
+	margin:auto;
+}
+
+.paymentselect .open{
+	height:auto;
+	opacity:1;
+	max-height:250px;
+	background-color:#EFEFFF;
+	border-top:solid 1px #AAA;
+	border-bottom:solid 1px #AAA;
+}
+.paymentselect .open .method-container {
+	opacity:1;
+}
+.paymentselect .open h3 {
+	opacity:0;
+	font-size:0px;
+	height:0px;
+}
+.paymentmethode-set {
+	position:absolute;
+	right:25px;
+	display:inline-block;
+	padding:15px;
+}
+
+.payment-logo {
+	float:left;
+	margin-right:15px;
+	width:100px;
+	height:100px;
+	padding:15px;
+	display:inline-block;
+	border-radius:100%;
+	background-color:#FFF;
+}
+.payment-logo img{
+	width:100%;
+	height:100%;
+}
+#stripe {
+	padding:0px;
+}
+#stripe-form {
+	display:block;
+	max-width:330px;
+}
+.stripe-payment-cardinfo {
+	border:solid 1px #DDD;
+	border-radius:5px;
+	padding:10px;
+	background-color:#FFF;
+	display:inline-block;
+}
+.stripe-payment-cardinfo td{
+}
+.stripe-payment-cardinfo input{
+	border:solid 0px #DDD;
+	padding:5px;
+}
+.stripe-payment-cardinfo input:focus{
+	outline:none;
+}
+.stripe-payment-cardinfo input:focus::-webkit-input-placeholder {
+	opacity:0;
+}
+/*
+.multistep-form .progress-display span {
+	display:inline-block;
+	width:10px;
+	height:10px;
+	border-radius:100%;
+	background-color:#CCC;
+}
+.multistep-form .progress-display .active {
+	background-color:#555;
+}
+*/

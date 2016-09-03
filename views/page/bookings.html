@@ -1,0 +1,51 @@
+<div class="content-body">
+	<div class="container-fluid" >
+		<div class="input-group" ng-hide="!filteredBookings && !loading.all">
+			<input type="text"  ng-model="searchquery" class="form-control"></input>
+			<span class="input-group-btn"><button class="btn btn-default input-group-btn-fix" ng-click="pageChanged()"><span class="icon wb-search"></span></button></span>
+		</div>
+		<div class="pull-right" ladda="loading.all" ng-hide="!filteredBookings && !loading.all">
+			<div class="pagination-sm pull-right">
+				<uib-pagination previous-text="<" next-text=">" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage" max-size="5" ng-change="pageChanged()"></uib-pagination>
+			</div>
+		</div>
+		<table class="display-list">
+			<tbody ng-if="booking.status==30" ng-repeat="booking in filteredBookings">
+				<tr>
+					<td valign="bottom"><b>{{booking.date | date:'dd.MM.yyyy'}}</b></td>
+					<td valign="bottom">{{booking.vehicle.model}} - {{booking.vehicle.plate}}</td>
+					<td class="hidden-xs"><reverse-geocode coords="booking.location" /></td>
+					<td rowspan="2">
+						<button class="btn btn-danger" ng-click="cancelBooking(booking)"><span class="icon wb-close"></span></button>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">{{booking.hour}}:00</td>
+					<td valign="top">{{booking.washingtype.code.replace('_',' ') || 'Washingtype unknown'}}</td>
+					<td class="hidden-xs" valign="top">{{booking.status | bookingstate}}</td>
+				</tr>
+				<tr ng-if="booking.notes">
+					<td><b>Note:</b></td>
+				</tr>
+				<tr ng-if="booking.notes">
+					<td>{{booking.notes}}</td>
+				</tr>
+			</tbody>
+			<tbody ng-if="booking.status!=30" ng-repeat="booking in filteredBookings | orderBy : booking.status : true">
+				<tr>
+					<td valign="bottom"><b>{{booking.date | date:'dd.MM.yyyy'}}</b></td>
+					<td valign="bottom" class="hidden-xs">{{booking.vehicle.model}} - {{booking.vehicle.plate}}</td>
+					<td rowspan="2"><b>{{booking.status | bookingstate}}</b></td>
+					<td rowspan="2">
+
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">{{booking.hour}}:00</td>
+					<td valign="top" class="hidden-xs">{{booking.washingtype.code || 'Washingtype unknown'}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<p ng-show="!filteredBookings && !loading.all">No booking History available</p>
+	</div>
+</div>

@@ -1,0 +1,176 @@
+<ul id="progressbar">
+  <li ng-class="{'active':currentStage==0}" ng-click="changeStage(0)">Vehicle</li>
+  <li ng-class="{'active':currentStage==1}" ng-click="changeStage(1)">Location</li>
+  <li ng-class="{'active':currentStage==2}" ng-click="changeStage(2)">Personal Details</li>
+</ul>
+
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="multistep-form">
+      <div class="progress-display">
+        <span class="header">Booking</span>
+        <!--<div class="pull-right" ng-class="{'active':currentStage==2}" ng-click="currentStage>2?setStep(2):null">2</div>-->
+        <!--<div class="pull-right" ng-class="{'active':currentStage==1}" ng-click="currentStage>1?setStep(1):null">1</div>-->
+        <!--<div class="pull-right" ng-class="{'active':currentStage==0}" ng-click="currentStage>0?setStep(0):null">0</div>-->
+
+        <!--<span ng-class="{'active':currentStage==0,'done':currentStage>0}" ng-click="currentStage>0?setStep(0):null">Vehicle</span>
+        <span class="arrow"></span>
+        <span ng-class="{'active':currentStage==1,'done':currentStage>1}" ng-click="currentStage>1?setStep(1):null">Location</span>
+        <span class="arrow"></span>
+        <span ng-class="{'active':currentStage==2,'done':currentStage>2}" ng-click="currentStage>=0?setStep(2):null">Payment</span>-->
+      </div>
+      <!-- Car/type/time -->
+      <div class="step" ng-show="currentStage==0">
+        <form name="cttForm" ng-submit="nextStep()">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+              <b>Vehicle</b>
+              <custom-select template="'views/partials/vehicleselect.html'" init="vehicles[0]" to-run="addVehicle" template-display="'views/partials/vehicleselect2.html'" items="vehicles" ng-model="booking.vehicle"></custom-select>
+              <br>
+              <b>Washtype</b>
+              <div ladda="loading.washtypes">
+                <div ng-repeat="washtype in washtypes"><input type="radio" name="washtype" ng-model="booking.washtype" ng-value="washtype.id" required>{{washtype.code.replace('_',' ')}}</input></div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+              <table>
+                <tr>
+                  <td><b>Date</b></td>
+                  <td><b>Time</b></td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="date" ng-model="booking.displaydate" class="form-control" min="{{minDate | date:'yyyy-MM-dd'}}" required>
+                  </td>
+                  <td>
+                    <select placeholder="Time" ng-model="booking.hour" class="form-control" required>
+                      <option ng-repeat="time in [7,8,9,10,11,12,13,14,15,16,17,18,19,20]" value="{{time}}">{{time}}:00 - {{time+1}}:00</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <b>Notes</b><br>
+              <textarea placeholder="Notes" ng-model="booking.note" class="form-control"></textarea>
+              <br>
+              <b>Price</b> : <span ladda="loading.price" data-spinner-size="18">{{booking.price}}.00 €</span>
+              <button class="btn btn-primary pull-right" ng-disabled="cttForm.$invalid || !booking.vehicle || !booking.washtype" type="submit">Select Location<span class="icon wb-chevron-right-mini"></span></button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <!-- Location -->
+      <div class="step" ng-show="currentStage==1">
+        <custom-select template="'views/partials/locationselect.html'" template-display="'views/partials/locationselect2.html'" items="locations" init="defLocation" ng-model="booking.location"></custom-select>
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' control="gmapBooking">
+          <ui-gmap-marker
+              idKey='"bm"'
+              coords='booking.location'
+              options='booking.location.options'>
+          </ui-gmap-marker>
+          <ui-gmap-circle ng-repeat="area in serverdZones" center="area" radius="area.radius | num" fill="{color:'#0F0',opacity:0.2}"></ui-gmap-circle>
+        </ui-gmap-google-map>
+
+        <button class="btn btn-primary pull-right" ng-disabled="!booking.location" ng-click="nextStep()">Select Payment<span class="icon wb-chevron-right-mini"></span></button>
+      </div>
+      <!-- Payment -->
+      <div class="step" ng-show="currentStage==2">
+        <h4>Select Payment Type</h4>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle custom-dropdown" type="button" data-toggle="dropdown">
+            <label ng-switch on="paymentmethode">
+              <label ng-switch-when="301">
+                Paypal
+              </label>
+              <label ng-switch-when="300">
+                Credit card
+              </label>
+              <label ng-switch-when="302">
+                Cash
+              </label>
+              <label ng-switch-default>
+                Select Payment Type
+              </label>
+            </label>
+            <span class="caret dropdown-caret"></span></button>
+          <ul class="dropdown-menu" ng-model="paymentVal">
+            <li value="paypal"><div ng-click="changeMethode(301)">PayPal</div></li>
+            <li value="credit-card"><div ng-click="changeMethode(300)">Credit card</div></li>
+            <li value="cash"><div ng-click="changeMethode(302)">Cash</div></li>
+          </ul>
+        </div>
+
+        <div class="paymentselect">
+          <div class="method" ng-click="changeMethode(301)" ng-show="paymentmethode==301" ng-class="{'open':paymentmethode==301}">
+            <h3>PayPal</h3>
+
+            <div class="method-container">
+              <h4>Pay via PayPal ...</h4>
+              <div class="payment-logo" id="paypal"><img  src="images/paypal_logo.png" /></div>
+              Just click the Button and accept the payment.<br>
+              <a href="{{paypalButton}}" ng-if="!paypalPaid"><button ladda="loading.paypal" ng-click="paypalPayment()" class="btn btn-default"><span class="icon wb-tag"></span> Pay</button></a>
+              <span ng-if="paypalPaid"><span class="icon wb-check"></span>Paid</span>
+            </div>
+            <button class="btn btn-default pull-right" ng-if="paypalPaid" ng-click="createBooking()">Book</button>
+          </div>
+          <div class="method" ng-click="changeMethode(300)" ng-show="paymentmethode==300" ng-class="{'open':paymentmethode==300}">
+            <h3>Credit card </h3>
+            <h4>Pay via Stripe ...</h4>
+            <div class="row">
+              <div class="container" >
+                <form ng-submit="stripePayment()" name="stripeForm" id="stripe-form">
+                  <table ng-if="!stripeId" class="stripe-payment-cardinfo">
+                    <tr>
+                      <td colspan="2">
+                        <label>
+                          <span>Card Number :</span>
+                          <input placeholder="42xx xxxx xxxx xxxx xxxx" type="text" size="20" ng-minlength="20" ng-maxlength="20" data-stripe="number"/>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label>
+                          <span>CVC :</span>
+                          <input type="text" placeholder="CVC" ng-minlength="4" ng-maxlength="4" size="1" data-stripe="cvc"/>
+                        </label>
+                      </td>
+                      <td>
+                        <label>
+                          <span>Expiration :</span>
+                          <div style="display:inline-block;">
+                            <input type="text" placeholder="Month" ng-minlength="2" ng-maxlength="2" size="2" data-stripe="exp-month"/>
+                            <span> / </span>
+                            <input type="text" placeholder="Year" ng-minlength="2" ng-maxlength="2" size="2" data-stripe="exp-year"/>
+                          </div>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" ng-if="stripeErrortext"><span class="icon wb-info-circle"></span> <span style="color:red;">{{stripeErrortext}}</span></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2"><button class="btn btn-primary pull-right" data-style="expand-left" ladda="loading.stripe" type="submit">Check Card</button></td>
+                    </tr>
+                  </table>
+                  <span ng-if="stripeId"><span class="icon wb-check"></span>Credit card information is valid!</span>
+                </form>
+              </div>
+            </div>
+            <button class="btn btn-default pull-right" ng-if="stripeId" ng-click="createBooking()">Book</button>
+          </div>
+          <div class="method" ng-click="changeMethode(302)" ng-show="paymentmethode==302" ng-class="{'open':paymentmethode==302}">
+            <h3>Cash </h3>
+            <div class="method-container">
+              <div class="payment-logo" id="cash"><img  src="images/cash_logo.png" /></div>
+              <h4>Pay in cash...</h4>
+              Pay the Washer personally and get to know who is washing your car.
+            </div>
+            <button class="btn btn-default pull-right" ng-click="createBooking()">Book</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

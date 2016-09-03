@@ -1,0 +1,15 @@
+<table class="location-table" >
+	<tr ng-repeat="location in locations" ng-class="{'selected':selectedLocation == location}">
+		<td>
+			<button class="btn btn-default pull-left" ng-click="setToDefault(location)">
+				<span class="icon" ng-class="{'wb-star-outline':location.default==0,'wb-star':location.default==1}"></span>
+			</button>
+		</td>
+		<td ng-click="selectLocation(location)">{{location.name}}</td>
+		<td ng-click="selectLocation(location)"><reverse-geocode coords="location" /></td>
+		<td>
+			<button class="btn btn-danger pull-right" ng-click="deleteLocation(location)"><span class="icon wb-trash"></span></button>
+		</td>
+	</tr>
+</table>
+<button ladda="loadLocations" class="btn btn-default pull-right" ng-click="addLocation()"><span class="icon wb-plus"></span>New place</button>

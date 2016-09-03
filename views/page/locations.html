@@ -1,0 +1,18 @@
+<div class="content-body">
+	<div class="container-fluid">
+		
+		<div class="">
+			<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+			<ui-gmap-marker ng-repeat="location in locations"
+					idKey='location.id'
+					coords='location'
+					options='location.options'
+					events='location.events'>
+			</ui-gmap-marker>
+			<ui-gmap-marker idKey="'newLocation'" coords='newLocation' events="newLocation.events" options='newLocation.options'></ui-gmap-marker>
+			<ui-gmap-circle ng-repeat="area in serverdZones" center="area" radius="area.radius | num" fill="{color:'#0F0',opacity:0.5}"></ui-gmap-circle>              
+			</ui-gmap-google-map>
+		</div>
+		<div ui-view></div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<form class="form-signin page-login" ng-submit="login()">
+  <div>
+    <div class="input-group input-group-icon">
+      <span class="input-group-addon">
+        <span class="icon wb-user"></span>
+      </span>
+      <input type="text" class="form-control" placeholder="Username" ng-model="user.username" required>
+    </div>
+    <br>
+    <div class="input-group input-group-icon">
+      <span class="input-group-addon"><span class="icon wb-lock"></span></span>
+      <input type="password" class="form-control" placeholder="Password" ng-model="user.password" required>
+    </div>
+  </div>
+   <div class="form-group clearfix">
+    <div class="pull-left">
+      <div class="checkbox">
+        <input type="checkbox" value="None" id="remember" name="check" ng-model="user.rememberme" checked />
+        <label for="remember"><div class="inlabel">Remeber me</div></label>
+      </div>
+    </div>
+    <a class="pull-right" title="recover password" ui-sref="access.recover-password">Forgot password?</a>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" ladda="loading" type="submit">Log in</button>
+  <br>
+  <p class="pull-left">No account? <a ui-sref="access.register">Register</a></p>
+</form>

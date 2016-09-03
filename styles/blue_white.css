@@ -1,0 +1,43 @@
+.sidebar-wrapper .sidebar{
+	background-color:#2C93D0;
+	color:#FFF;
+}
+.sidebar-wrapper .top-bar{
+	background-color:#F9F9F9;
+}
+body {
+	background-color:#F3F3F3;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #EEE;
+	
+}
+.sidebar-menu li {
+	background-color:#2C93D0;
+    border-bottom:solid 1px #3CA3E0;
+}
+.sidebar-menu li span{
+	margin-left:15px;
+}
+
+.sidebar-brand,.brand-top-menu {
+	font-family: 'Bello Pro';
+    color: #ffbb00 !important;
+}
+.sidebar .sidebar-menu li:hover{
+	background-color:#4DB4F1;
+}
+.sidebar .nav-profil {
+	box-shadow: inset 0px 5px 5px -5px rgba(0,0,0,0.75),inset 0px -5px 5px -5px rgba(0,0,0,0.75);
+	background-color:#3CA3E0;
+}
+.sidebar-brand a{
+	opacity:0;
+	font-family: 'Bello Pro';
+    color: #ffbb00 !important;
+    font-size: 250%;
+    line-height: normal;
+}

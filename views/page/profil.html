@@ -1,0 +1,79 @@
+<div class="content-body">
+	<div class="container-fluid">
+		<table class="profil-info hidden-xs">
+			<tr>
+				<td class="profil-td">
+					<div class="profil-container" style="background-image:url('images/water-blur.jpg');">
+						<img onError="this.src='images/image-not-found.png';" class="profil-image" src="{{getProfileImage()}}"></img>
+						<button class="btn btn-success btn-edit-profil-image" ng-click="changeProfilImage()"><span class="icon wb-edit"></span></button>
+					</div>
+					
+				</td>
+				<td class="edit-fields">
+					<form name="userData" novalidate>
+						<input ng-readonly="!edit" placeholder="Name" name="fname" ng-minlength="2" class="form-control top-right" ng-model="session.name" required></input>
+						<input ng-readonly="!edit" placeholder="Surname" name="lname" ng-minlength="2" class="form-control" ng-model="session.surname" required></input>
+						<input ng-readonly="!edit" placeholder="Phone" type="tel" ng-minlength="9" class="form-control" ng-model="session.telephone" required></input>
+						<input ng-readonly="!edit" placeholder="Email" type="email" class="form-control" ng-model="session.email" required></input>
+						<button class="btn btn-primary bottom-right" ng-disabled="userData.$invalid && edit" ng-class="{'btn-primary':!edit,'btn-success':edit}" ng-click="edit?saveProfil():edit=true">
+							<span ng-show="!edit">Edit</span>
+							<span ng-show="edit">Save</span>
+						</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<div class="visible-xs">
+			<div class="profil-container-xs" style="background-image:url('images/water-blur.jpg');">
+				<img class="profil-image" src="{{getProfileImage()}}"></img>
+				<button class="btn btn-success btn-edit-profil-image" ng-click="changeProfilImage()"><span class="icon wb-edit"></span></button>
+			</div>
+			<div class="edit-fields-xs">
+				<form name="userData" novalidate>
+					<input ng-readonly="!edit" placeholder="Name" ng-minlength="2" name="fname" class="form-control" ng-model="session.name" required></input>
+					<input ng-readonly="!edit" placeholder="Surname" ng-minlength="2" name="lname" class="form-control" ng-model="session.surname" required></input>
+					<input ng-readonly="!edit" placeholder="Phone" type="tel" ng-minlength="9" class="form-control" ng-model="session.telephone" required></input>
+					<input ng-readonly="!edit" placeholder="Email" type="email" class="form-control" ng-model="session.email" required></input>
+					<button class="btn btn-primary bottom" ng-disabled="userData.$invalid && edit" ng-class="{'btn-primary':!edit,'btn-success':edit}" ng-click="edit?saveProfil():edit=true">
+						<span ng-show="!edit">Edit</span>
+						<span ng-show="edit">Save</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+		<div class="content-body-inrow">
+			<div class="profil-notification">
+				<h2>Notifications</h2>
+				<div class="checkbox">
+					<input type="checkbox" ng-click="updateNoftifications()" value="None" id="sms" name="check" ng-true-value="'1'" ng-false-value="'0'" ng-model="session.smsnot"/>
+					<label for="sms"><div class="inlabel">SMS Notification</div></label>
+				</div>
+				<div class="checkbox">
+					<input type="checkbox" ng-click="updateNoftifications()" value="None" id="mail" name="check" ng-true-value="'1'" ng-false-value="'0'" ng-model="session.mailnot"/>
+					<label for="mail"><div class="inlabel">E-Mail Notification</div></label>
+				</div>
+				<div class="checkbox">
+					<input type="checkbox" ng-click="updateNoftifications()" value="None" id="push" name="check" ng-true-value="'1'" ng-false-value="'0'" ng-model="session.pushnot"/>
+					<label for="push"><div class="inlabel">Push Notification</div></label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+		<div class="content-body-inrow">
+			<div class="profil-notification">
+					<h2>Change password</h2>
+					<form name="changepw" novalidate>
+						<div><input type="password" placeholder="Old password" class="form-control" ng-model="cngPassword.old" required></input></div>
+						<div><input type="password" placeholder="New password" class="form-control" ng-model="cngPassword.new" ng-minlength="6" required></input></div>
+						<div><input type="password" placeholder="New password" class="form-control" ng-model="cngPassword.check" ng-minlength="6" required></input></div>
+						<div><button ng-disabled="changepw.$invalid" ng-click="updatePassword()" class="btn btn-primary fullwidth">Update password</button></div>
+					</form>
+				</div>
+		</div>
+	</div>
+</div>

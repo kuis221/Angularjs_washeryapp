@@ -1,0 +1,112 @@
+<div class="content-body" style="padding-top:0px;padding-bottom:0px;">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+			<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+				<ui-gmap-marker ng-repeat="washing in openWashings" 
+					idKey='washing.id'
+					coords='washing.place'
+					events='washing.events'>
+				</ui-gmap-marker>       
+				<ui-gmap-circle ng-if="area" center="area" radius="area.radius | num" fill="{color:'#0F0',opacity:0.5}"></ui-gmap-circle>   				
+			</ui-gmap-google-map>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
+			<uib-tabset active="activeJustified" justified="true">
+				<uib-tab index="0" heading="Active">
+					<div class="washer-booking" ng-repeat="washing in openWashings" ng-if="washing.status==36">
+						<table class="full-width">
+							<tr>
+								<td><span>{{washing.date | date:'dd.MM'}}</span></td>
+								<td rowspan="2"><span>{{washing.status | bookingstate}}</span></td>
+								<td rowspan="2">
+									<span ng-click="loadWashing(washing)"><button ladda="washing.show && !washing.loaded" class="btn btn-default pull-right"><span class="icon wb-info"></span></button></span>
+								</td>
+							</tr>
+							<tr>
+								<td><span>{{washing.hour}}:00</span></td>
+							</tr>
+						</table>
+						<div ng-show="washing.show" class="washer-booking-expandable">
+							<b>For</b>	<a ui-sref="page.viewprofil({uname:washing.user.username})">{{washing.user.username}}</a><br>
+							<b>Washing </b> <span>{{washing.washing.code}}</span>
+							<div class="address">
+								<reverse-geocode coords="washing.place"></reverse-geocode>
+							</div>
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									<img class="vehicle-image" onError="this.src='images/image-not-found.png';" src="{{washing.vehicle.img}}"></img>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 vehicle-specs" >
+									<b>Model </b> {{washing.vehicle.model}} <br>
+									<b>Plate </b> {{washing.vehicle.plate}} <br>
+									<b>Color </b> {{washing.vehicle.color}} <br>
+								</div>
+							</div>
+							<div class="note">
+								{{washing.notes}}
+							</div>
+							<div class="full-width">
+								<button ng-click="cancelWashing(washing)" class="btn btn-danger pull-right"><span class="icon wb-close"></span> Cancel</button>
+								<button ng-click="completeWashing(washing)" class="btn btn-success pull-right"><span class="icon wb-check"></span> Done</button>
+							</div>
+						</div>
+					</div>
+				</uib-tab>
+				<uib-tab index="1" heading="Bookings">
+					<div  class="washer-booking" ng-repeat="washing in openWashings" ng-if="washing.status==30">
+						<table class="full-width">
+							<tr>
+								<td><span>{{washing.date | date:'dd.MM'}}</span></td>
+								<td rowspan="2"><span>{{washing.status | bookingstate}}</span></td>
+								<td rowspan="2">
+									<span ng-click="loadWashing(washing)"><button ladda="washing.show && !washing.loaded" class="btn btn-default pull-right"><span class="icon wb-info"></span></button></span>
+								</td>
+							</tr>
+							<tr>
+								<td><span>{{washing.hour}}:00</span></td>
+							</tr>
+						</table>
+						<div ng-show="washing.show" class="washer-booking-expandable">
+							<b>For</b>	<a ui-sref="page.viewprofil({uname:washing.user.username})">{{washing.user.username}}</a><br>
+							<b>Washing </b> <span>{{washing.washing.code}}</span>
+							<div class="address">
+								<reverse-geocode coords="washing.place"></reverse-geocode>
+							</div>
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									<img class="vehicle-image" onError="this.src='images/image-not-found.png';" src="{{washing.vehicle.img}}"></img>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 vehicle-specs" >
+									<b>Model </b> {{washing.vehicle.model}} <br>
+									<b>Plate </b> {{washing.vehicle.plate}} <br>
+									<b>Color </b> {{washing.vehicle.color}} <br>
+								</div>
+							</div>
+							<div class="note" ng-if="washing.notes">
+								<b>Notes</b><br>
+								{{washing.notes}}
+							</div>
+							<div class="full-width">
+								<button ng-click="acceptWashing(washing)" class="btn btn-success pull-right"><span class="icon wb-check"></span> Accept</button>
+							</div>
+						</div>
+					</div>
+				</uib-tab>
+				<uib-tab index="2" heading="Zone">
+					<div class="container-fluid">
+						<br>
+						<div class="input-group">
+							<input type="text" placeholder="Address" g-places-autocomplete on-change="areaChanged" lnglat="area" class="form-control" ng-model="currentAddress"></input>
+							<span class="input-group-btn"><button class="btn btn-default input-group-btn-fix" ng-click="setToCurrentLocation()"><span class="icon wb-map"></span></button></span>
+						</div>
+						<b>Radius</b>
+						<input type="number" ng-model="area.radius" class="form-control" min="100"></input>
+						<button class="btn btn-default" ng-click="setServedZone()" ng-disabled="!area.radius || !area.longitude">Save</button>
+					</div>
+				</uib-tab>
+			 </uib-tabset>
+
+				
+		</div>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+<table style="width:100%;">
+	<tr>
+		<td rowspan="2" style=""><span class="icon wb-mobile customselect-icon"></span></td>
+		<td valign="bottom" style="width:100%;"><b>{{item.name}}</b></td>
+		<td rowspan="2"><span class="icon wb-plus customselect-add-btn" ng-click="$event.stopPropagation();run();" ui-sref="page.locations.all"></span></td>
+		<td rowspan="2"><span class="icon wb-triangle-down"></span></td>
+	</tr>
+	<tr>
+		<td valign="top"><reverse-geocode coords="item" /></td>
+	</tr>
+</table>

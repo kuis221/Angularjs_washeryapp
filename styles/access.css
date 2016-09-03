@@ -1,0 +1,191 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #EEE;
+}
+
+a {
+	color:#ffbb00;
+}
+.page-background-blue{
+	background-color:#3CA3E0;
+	margin:0px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	min-width:100%;
+	min-height:100%;
+}
+.page-login .ng-invalid.ng-touched {
+	background-color:rgba(255,0,0,0.5);
+	color:#FFF;
+}
+.page-login .ng-invalid.ng-touched:focus {
+	background-color:#3CA3E0;
+	color:#FFF;
+}
+
+.page-login {
+    color: #ffffff;
+}
+.page-login input::-webkit-input-placeholder {
+    color: #ffffff;
+}
+.page-login input::-moz-placeholder {
+    color: #fff;
+}
+.page-login input:-ms-input-placeholder {
+    color: #fff;
+}
+.page-login input{
+    background-color: #3CA3E0;
+    border: 1px solid #fff;
+    color: #ffffff;
+	transition:all 0.2s;
+}
+.page-login input:focus{
+    color:#3CA3E0;
+	border: 1px solid #fff;
+    background-color: #fff;
+}
+.input-group-addon{
+    color:#3CA3E0;
+    border: solid 1px #fff;
+    background-color: #fff;
+}
+.brand {
+	max-height:150px;
+}
+
+.page-login .btn{
+    border-color: #ffffff;
+    color:#3CA3E0;
+    background-color:#fff;
+}.page-login .btn:focus{
+     border-color: #ffffff;
+     color:#fff;
+     background-color:#3CA3E0;
+ }
+
+.brand-text {
+    font-family: 'Bello Pro';
+    color: #ffbb00;
+    font-size: 80px !important;
+    line-height: normal;
+}
+
+.brand-slogan {
+    font-family: 'Bello Pro';
+    color: #ffffff;
+    font-size: 24px !important;
+    line-height: 75px;
+	position: relative;
+    top: -68px;
+    left: -5px;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.checkbox {
+  width: 20px;
+  position: relative;
+  height:25px;
+}
+.checkbox label {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #FFF;
+  border-radius: 4px;
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.checkbox .inlabel {
+	text-align:left;
+	min-width:200px;
+	padding-left:5px;
+}
+.checkbox label:after {
+  content: '';
+  width: 13px;
+  height: 8px;
+  position: absolute;
+  top: 5px;
+  left: 3.5px;
+  border: 3px solid #333;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.checkbox label:hover::after {
+  opacity: 0.5;
+}
+.checkbox input[type=checkbox] {
+  visibility: hidden;
+}
+.checkbox input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
+.page-login select {
+	background-color:#3CA3E0;
+	color:#FFF;
+	border:solid 1px #FFF;
+	transition:all 0.2s;
+}
+.page-login select:focus {
+	color:#3CA3E0;
+	background-color:#FFF;
+}
+
+.in-input {
+	position:absolute;
+	right:8px;
+	top:9px;
+	z-index:1000;
+}
+.in-input img{
+	height:28px;
+}
+.in-input div {
+	height:30px;
+	font-size:25px;
+}
+.in-input .success {
+	color:#00FF00;
+}
+.in-input .danger {
+	color:#FF0000;
+}

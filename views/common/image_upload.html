@@ -1,0 +1,15 @@
+<div class="modal-content image-upload">
+	<div class="dropzone" dropzone on-drop-class="'drop'" imagefile="newFile" on-change="onNewFile">
+		<div class="description">
+			<input file-change="onNewFile" type="file" name="file" id="file" ng-model="newFile"></input>
+			<label for="file">
+				<div class="add-icon icon wb-plus"></div>
+				<div class="add-text">Add Image</div>
+			</label>
+		</div>
+	</div>
+	<div>
+		<uib-progressbar ng-if="loaded>0" class="progress-striped" value="{{loaded}}" type="warning">{{loaded}}%</uib-progressbar>
+	</div>
+	
+</div>
